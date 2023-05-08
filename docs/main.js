@@ -1,10 +1,18 @@
-importScripts('https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js');
 
+var el = document.querySelector("#profile-picture")
+
+if (el == null) {
+ alert("Selection null");
+}
 anime({
-    targets: 'div.bg-blue-800',
+    targets: el,
     translateY: [
         {value: 200, duration: 1200},
         {value: 0, duration: 800}
     ],
+    rotate: {
+        value: '1turn',
+        easing: 'easeInOutSine'
+    }
 
-})
+});
