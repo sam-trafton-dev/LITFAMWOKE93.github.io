@@ -1,7 +1,7 @@
 
 let el;
 
-window.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     el = document.querySelector('#profile-picture');
 });
 
