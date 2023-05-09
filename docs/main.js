@@ -1,5 +1,9 @@
 
-var el = document.querySelector("#profile-picture")
+let el;
+
+document.addEventListener('DOMContentLoaded', function() {
+    el = document.querySelector('#profile-picture');
+});
 
 if (el == null) {
  alert("Selection null");
