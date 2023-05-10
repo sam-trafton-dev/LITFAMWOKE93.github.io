@@ -64,7 +64,7 @@ function rotateTooth(Toothnum, parentGear) {
 
             targets: parentGear,
             rotate: {
-                value: [0, 45],
+                value: [-45, 0],
                 easing: 'easeInOutSine',
             },
         })
@@ -74,6 +74,7 @@ function rotateTooth(Toothnum, parentGear) {
     else {
         style = getComputedStyle(tooth);
         deg = convertToAngle(style.transform);
+        console.log(deg)
 
         anime({
             targets: tooth,
@@ -89,10 +90,22 @@ function rotateTooth(Toothnum, parentGear) {
 
 
 }
-// Range loop starting at 1 since we are searching n:th child nodes and they do not have a zero
+
+
+function rotateGear () {
+    // Range loop starting at 1 since we are searching n:th child nodes and they do not have a zero
 for (i = 1; i < 6; ++i) {
     rotateTooth(i, parentGear);
+    console.log(i)
 }
+}
+gear = console.log(document.querySelector('.tooth:nth-child(5)'));
+style = getComputedStyle(parentGear, gear);
+console.log(style.transform)
+deg = convertToAngle(style.transform);
+console.log(deg);
+
+rotateGear();
 
 
 

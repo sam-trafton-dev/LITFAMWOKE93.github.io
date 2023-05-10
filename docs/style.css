@@ -690,5 +690,5 @@ video {
 }
 
 .tooth:nth-child(5) {
-  transform: rotate(-45deg);
+  transform: rotate(180deg);
 }
