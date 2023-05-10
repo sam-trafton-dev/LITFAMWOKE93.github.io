@@ -2,7 +2,7 @@
 let el;
 let parentGear = document.querySelector('#base-tooth');
 el = document.querySelector("#profile-picture");
-
+var animationComplete = false;
 
 anime({
     targets: el,
@@ -57,17 +57,18 @@ function rotateTooth(Toothnum, parentGear) {
     // can be added indefinitely on a classes children
     // so we really donn't need this block as the base class will inhereit nth child properties
     // if we make enough calls to the function
+    // Nevermind, we need to begin one position back with the original piece to rotate correcy
     if (parentGear != null && tooth == null) {
+        console.log("Null child");
+        // anime({
 
-        anime({
 
-
-            targets: parentGear,
-            rotate: {
-                value: [-45, 0],
-                easing: 'easeInOutSine',
-            },
-        })
+        //     targets: parentGear,
+        //     rotate: {
+        //         value: [deg, (deg+45)],
+        //         easing: 'easeInOutSine',
+        //     },
+        // })
     }
     // The rotation animation stored with the rotation beginning data
     // and the desired end degree
@@ -76,13 +77,20 @@ function rotateTooth(Toothnum, parentGear) {
         deg = convertToAngle(style.transform);
         console.log(deg)
 
-        anime({
+        var rotate = anime({
             targets: tooth,
             rotate: {
                 value: [deg, (deg + 45)],
                 easing: 'easeInOutSine',
+                direction: 'reverse',
             }
-        })
+            
+
+        });
+
+        parentGear.oninput = function() {
+            rotate.seek(0);
+        }
         // Rest the base document selection when exiting the function
         parentGear = document.querySelector('#base-tooth');
     }
@@ -94,18 +102,38 @@ function rotateTooth(Toothnum, parentGear) {
 
 function rotateGear () {
     // Range loop starting at 1 since we are searching n:th child nodes and they do not have a zero
-for (i = 1; i < 6; ++i) {
+for (i = 2; i < 6; ++i) {
+    //bounce and rotate profile picture
+    anime({
+        targets: el,
+    
+        rotate: {
+            value: '15',
+    
+        },
+        scale: {
+            value: [1, 0.97],
+            direction: 'reverse',
+            easing: 'linear'
+        },
+    
+    
+    
+    
+    });
+    
+   
+    
     rotateTooth(i, parentGear);
-    console.log(i)
-}
-}
-gear = console.log(document.querySelector('.tooth:nth-child(5)'));
-style = getComputedStyle(parentGear, gear);
-console.log(style.transform)
-deg = convertToAngle(style.transform);
-console.log(deg);
+    console.log("Gear"+i+" is at"+deg)
+    animationComplete = true;
+    
 
-rotateGear();
+}
+}
+
+
+
 
 
 

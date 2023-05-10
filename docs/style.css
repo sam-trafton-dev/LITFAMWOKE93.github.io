@@ -678,17 +678,16 @@ video {
 }
 
 .tooth:nth-child(2){
-  transform: rotate(45deg);
+  transform: rotate(0deg);
 }
 
 .tooth:nth-child(3){
-  transform: rotate(90deg);
+  transform: rotate(45deg);
 }
 
 .tooth:nth-child(4){
-  transform: rotate(135deg);
+  transform: rotate(90deg);
 }
-
 .tooth:nth-child(5) {
-  transform: rotate(180deg);
+  transform: rotate(-45deg);
 }
