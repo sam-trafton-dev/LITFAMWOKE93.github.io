@@ -2,7 +2,7 @@
 let el;
 let parentGear = document.querySelector('#base-tooth');
 el = document.querySelector("#profile-picture");
-var animationComplete = false;
+
 
 anime({
     targets: el,
@@ -126,7 +126,7 @@ for (i = 2; i < 6; ++i) {
     
     rotateTooth(i, parentGear);
     console.log("Gear"+i+" is at"+deg)
-    animationComplete = true;
+    
     
 
 }
