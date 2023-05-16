@@ -2,7 +2,7 @@
 let el;
 let parentGear = document.querySelector('#base-tooth');
 el = document.querySelector("#profile-picture");
-var animationComplete = false;
+
 
 anime({
     targets: el,
