@@ -43,66 +43,64 @@ function convertToAngle(matrix) {
 // Parameters are a tooth number and the parent gear(container)
 
 
-function rotateTooth(Toothnum, parentGear) {
+function rotateTooth(toothNum) {
     // target parentGear by its base-tooth class ID in HTML
-    tooth = document.querySelector('.tooth:nth-child(' + Toothnum + ')');
+    tooth = document.querySelector('.tooth:nth-child(' + toothNum + ')');
+    console.log(tooth + " " + toothNum)
 
-    // Get all of the computed CSS attributes of the parent
-    // Convert the rotation transform matrix into a degree
-    style = getComputedStyle(parentGear);
-    deg = convertToAngle(style.transform);
-
-    // If the parent gear is not null and the child is not null perform rotation
-    // HOWEVER, during this process I discovered that the nth child attribute on css
-    // can be added indefinitely on a classes children
-    // so we really donn't need this block as the base class will inhereit nth child properties
-    // if we make enough calls to the function
-    // Nevermind, we need to begin one position back with the original piece to rotate correcy
-    if (parentGear != null && tooth == null) {
-        console.log("Null child");
-        // anime({
-
-
-        //     targets: parentGear,
-        //     rotate: {
-        //         value: [deg, (deg+45)],
-        //         easing: 'easeInOutSine',
-        //     },
-        // })
-    }
-    // The rotation animation stored with the rotation beginning data
-    // and the desired end degree
-    else {
+    
         style = getComputedStyle(tooth);
+        console.log(style.transform);
         deg = convertToAngle(style.transform);
+        
+        
         console.log(deg)
-
-        var rotate = anime({
+        console.log(deg + 45);
+            anime({
             targets: tooth,
-            rotate: {
-                value: [deg, (deg + 45)],
-                easing: 'easeInOutSine',
-                direction: 'reverse',
+            keyframes: [
+                {rotate: [deg, (deg+45)], easing: 'easeInOutSine'},
+                
+                
+            ],
+            duration: 2000,
+            
+            loop: true,
+            
+            
+            complete: function() {
+                
+                style = getComputedStyle(tooth);
+                deg = convertToAngle(style.transform);
+                
+        
+                console.log("Function Complete" + toothNum)
+                console.log("Degree before reset is " + deg);
+                anime({ targets: tooth,
+                rotate: {
+                    value:[deg, (deg - 45)],
+                    duration: 0,
+                    
+                }
+                
+            });
             }
             
 
         });
-
-        parentGear.oninput = function() {
-            rotate.seek(0);
-        }
-        // Rest the base document selection when exiting the function
-        parentGear = document.querySelector('#base-tooth');
+        
+       
+        
     }
 
 
 
-}
+
 
 
 function rotateGear () {
     // Range loop starting at 1 since we are searching n:th child nodes and they do not have a zero
-for (i = 2; i < 6; ++i) {
+for (i = 2; i < 5; ++i) {
     //bounce and rotate profile picture
     anime({
         targets: el,
@@ -116,17 +114,28 @@ for (i = 2; i < 6; ++i) {
             direction: 'reverse',
             easing: 'linear'
         },
-    
-    
-    
-    
     });
     
-   
     
-    rotateTooth(i, parentGear);
+    rotateTooth(i);
+    tooth4 = document.getElementById("gear4")
+    anime({
+        targets: tooth4,
+            keyframes: [
+                {rotate: [-45, 0], easing: 'easeInOutSine'},
+                
+                
+            ],
+            duration: 2000,
+            loop: true,
+
+            
+            
+        
+        
+      });
     console.log("Gear"+i+" is at"+deg)
-    animationComplete = true;
+    
     
 
 }

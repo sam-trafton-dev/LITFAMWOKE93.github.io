@@ -43,8 +43,5 @@
   .tooth:nth-child(4){
     transform: rotate(90deg);
   }
-  .tooth:nth-child(5) {
-    transform: rotate(-45deg);
-  }
   
 }

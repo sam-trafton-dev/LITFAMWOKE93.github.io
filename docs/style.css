@@ -675,6 +675,8 @@ video {
   z-index: -10;
   top: -3%;
   left:39%;
+  transform: rotate(-45deg);
+  
 }
 
 .tooth:nth-child(2){
@@ -687,7 +689,4 @@ video {
 
 .tooth:nth-child(4){
   transform: rotate(90deg);
-}
-.tooth:nth-child(5) {
-  transform: rotate(-45deg);
 }
