@@ -153,6 +153,12 @@ section{
 
 }
 
+#project-section{
+  display: flex;
+  align-items: center;
+  padding: 10rem;
+}
+
 .about-heading{
   width:100%;
   height: 100%;
