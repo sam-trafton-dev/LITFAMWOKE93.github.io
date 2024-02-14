@@ -15,7 +15,7 @@ function readFaviconPixels(faviconURL, callback) {
 document.getElementById('submissionForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission behavior
   
-    var secretCode = document.getElementById('secretCode').value;
+    var secretCode = document.getElementById('secretCode').value.toLowerCase();
     var correctCode = "dildo"; 
   
     if (secretCode === correctCode) {
