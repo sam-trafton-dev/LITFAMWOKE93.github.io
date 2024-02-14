@@ -10,15 +10,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <script src="main.js" defer></script>
+  <script  src="main.js" defer></script>
+  <script src="welding.js" defer></script>
 </head>
 
 <body>
+ 
   <header>
-    <nav class="navbar">
+    <nav class="navbar font-z" >
       
      
-      <ul class="links-container">
+      <ul class="links-container front-z" >
         <li class="link-items"><a href="#hero-section" class="links">Home</a></li>
         <li class="link-items"><a href="#about-section" class="links">About Me</a></li>
         <li class="link-items"><a href="#project-section" class="links">Projects</a></li>
@@ -27,7 +29,7 @@
       </ul>
 
       <ul>
-        <div class="socials-container">
+        <div class="socials-container front-z" >
         <div class="socials"><img src="https://github.com/LITFAMWOKE93/LITFAMWOKE93.github.io/blob/main/resources/img/linkedin.png?raw=true"  class="social-img"></div>
         <div class="socials"><img src="https://github.com/LITFAMWOKE93/LITFAMWOKE93.github.io/blob/main/resources/img/github.png?raw=true"  class="social-img"></div>
         <div class="socials"><img src="https://mastodon.social/packs/media/images/logo-d4b5dc90fd3e117d141ae7053b157f58.svg"  class="social-img"></div>
@@ -35,11 +37,19 @@
       </ul>
 
     </nav>
+   
 
-    <main id ="hero-section">
+    <main id ="hero-section" class="back-z">
       <div class="hero-info">
         <h1 class="hero-heading">Always</h1>
         <!--TODO: Where animations go -->
+
+        <form id="submissionForm">
+          <label for="secretCode">When I say I love you, you say:</label><br>
+          <input type="text" id="secretCode" name="secretCode"><br>
+          <input type="submit" value="Submit">
+        </form>
+        
         
 
         
@@ -52,25 +62,30 @@
 
   
 
-  <section id="about-section">
-    <h1 class="hero-heading"><span>Building</span></h1>
+  <section id="about-section" class="back-z">
+    <h1 class="hero-heading back-z"><span>Building</span></h1>
         
       
-      <div class="about-heading"><h1>My name is Sam</h1></div>
+      <div class="about-heading">
+        <h1>My name is Sam</h1>
 
+        <p class="about-p">I have spent 13 years learning how to build things in the physical world. If Milwaukee or Dewalt have made a tool
+          then I have used it at some point in my life. I've spent time in residential, commercial, but mostly the industrial construction sector.  </p>
 
-      
-    </div>
-
+          <h1>But now I want to build digital products</h1>
+       
+      </div>
     
-
+   
+     
+      
   </section>
 
-  <section id="project-section">
+  <section id="project-section" class="back-z">
     
       <h1 class="hero-heading"> Something</h1>
     
-      <div class="projects-container">
+      <div class="projects-container back-z" >
         <div class="project-card">
           <img src="resources/img/if_i_had_one.png" alt="Project Image">
           <div class="card-info-container">
@@ -117,7 +132,7 @@
 
   
   
-  <script src="main.js"></script>
+ 
  
 </body>
 </html>
