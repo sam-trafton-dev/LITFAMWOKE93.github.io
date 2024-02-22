@@ -15,9 +15,11 @@
 </head>
 
 <body>
+
  
   <header>
     <nav class="navbar font-z" >
+      
       
      
       <ul class="links-container front-z" >
@@ -25,7 +27,8 @@
         <li class="link-items"><a href="#about-section" class="links">About Me</a></li>
         <li class="link-items"><a href="#project-section" class="links">Projects</a></li>
         <li class="link-items"><a href="mailto:admin@samtrafton.dev?subject=Hello Sam," class="links">Contact</a></li>
-
+        <li class="link-items">Why is the site raw HTML/CSS/JS<div id="why-raw-vis" class="breathing hoverable" data-text="">?</div></li>
+        
       </ul>
 
       <ul>
@@ -45,11 +48,7 @@
         <h1 class="hero-heading">Always</h1>
         <!--TODO: Where animations go -->
 
-        <form id="submissionForm">
-          <label for="secretCode">When I say I love you, you say:</label><br>
-          <input type="text" id="secretCode" name="secretCode"><br>
-          <input type="submit" value="Submit">
-        </form>
+        
         
         
 
@@ -61,7 +60,9 @@
 
   </header>
 
-  
+  <div id="overlay" class="overlay hidden">
+    <p id="overlay-text"></p>
+  </div>
 
   <section id="about-section" class="back-z">
     <h1 class="hero-heading back-z"><span>Building</span></h1>
