@@ -6,7 +6,8 @@
       ],
       "target" : {
         "namespace" : "android_app",
-        "package_name" : "samtrafton.dev.swipeslam",
+        "package_name" : "dev.samtrafton.android",
+        "site": "https://www.samtrafton.dev",
         "sha256_cert_fingerprints" : [
             "499eb276045340e8374fd5b9cb4ba73750977df7"
         ]
