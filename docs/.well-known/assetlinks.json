@@ -1,0 +1,15 @@
+[
+    {
+      "relation" : [
+        "delegate_permission/common.handle_all_urls",
+        "delegate_permission/common.get_login_creds"
+      ],
+      "target" : {
+        "namespace" : "android_app",
+        "package_name" : "samtrafton.dev.swipeslam",
+        "sha256_cert_fingerprints" : [
+            "499eb276045340e8374fd5b9cb4ba73750977df7"
+        ]
+      }
+    }
+  ]
