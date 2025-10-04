@@ -129,6 +129,10 @@ html {
   display: block;
 }
 
+#heinlein-quote-vis:hover + #heinlein-quote-vis {
+  display: block;
+}
+
 
 #hero-section{
   position: relative;
@@ -143,8 +147,8 @@ html {
 }
 
 .hero-info{
-  position: aboslute;
-  width: 50;
+  position: absolute;
+  width: 50px;
   min-width: 350px;
 
 }
