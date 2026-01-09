@@ -40,12 +40,12 @@ const projects = [
     link: null,
   },
   {
-    title: "Project Name",
-    subtitle: "Coming Soon",
-    description: "Small description",
-    tech: [],
-    image: "/img/if_i_had_one.png",
-    link: null,
+    title: "Arc Raiders Steam Review Analysis",
+    subtitle: "Data Analytics and NLP",
+    description: "Using open source model from Ollama to perform semantic analysis. The goal is to identify the most critical development tasks for the game team to address.",
+    tech: ["Python", "Ollama", "NLP", "Data Analytics"],
+    image: "/img/arc_raiders_logo.png",
+    link: "https://github.com/sam-trafton-dev/nlp-steam-arc-raiders/tree/master",
   },
 ]
 
@@ -60,9 +60,8 @@ export function Projects() {
           <div className="text-center space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold">Projects</h2>
             <Separator className="w-24 mx-auto" />
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              A collection of projects I've worked on, from game mods to mobile
-              applications.
+            <p className="text-bold-foreground max-w-2xl mx-auto">
+              Some people advise pruning projects as you grow, but learning is a journey and littered trail of ugly code. I have put a star next to what I am currenlty most proud of.
             </p>
           </div>
 

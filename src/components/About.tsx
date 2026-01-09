@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
+import { ComicBubble } from "@/components/ComicBubble"
 
 export function About() {
   return (
@@ -11,7 +12,7 @@ export function About() {
       <div className="container mx-auto max-w-4xl">
         <div className="space-y-8 md:space-y-12">
           <div className="text-center space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold">About Me</h2>
+            <h2 className="text-4xl md:text-5xl font-bold">My name is Sam</h2>
             <Separator className="w-24 mx-auto" />
           </div>
 
@@ -26,13 +27,13 @@ export function About() {
 
             <div className="flex-1 space-y-6 text-center md:text-left">
               <div>
-                <h3 className="text-2xl font-semibold mb-4">My name is Sam</h3>
+                <h3 className="text-2xl font-semibold mb-4">I have spent 13 years</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  I have spent 13 years learning how to build things in the
+                  learning how to build things in the
                   physical world. If Milwaukee or Dewalt have made a tool then I
                   have used it at some point in my life. I've spent time in
                   residential, commercial, and mostly the industrial construction
-                  sector. 
+                  sector, sepcifically semi-conductor fabrication.
                 </p>
               </div>
 
@@ -40,15 +41,17 @@ export function About() {
 
               <div>
                 <h3 className="text-2xl font-semibold mb-4">
-                  But now I want to build digital products
+                  Now I'm focused on building digital products
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  I am an engineer at heart, but the formal education was not
+                  &emsp;I am an engineer at heart, but the formal education was not
                   something within my reach at a young age. After saving up enough money, I enrolled and obtained my Bachelors in Computer Science from CSU Global.
-                  While at CSU Global, I took a few courses in AI, Machine Learning, and Object Oriented Programming. I enjoy continuous
+                  While at CSU Global, I took a few courses in AI, Machine Learning, and Object Oriented Programming. 
+                  <br></br>&emsp; I enjoy continuous
                   learning and exposure to advanced subjects. It is my hope to one
                   day be a "full stack" robotics engineer from software to
                   fabrication. Currently seeking a Master's in Computer Science and afterwards intend on attending an engineering school for a Master's in Robotics.
+                   <br></br>&emsp;I've never lived in one place for more than a couple of years so it's difficult to attend a an in-person university which I would prefer.
                 </p>
               </div>
 
@@ -56,16 +59,21 @@ export function About() {
 
               <div>
                 <h3 className="text-2xl font-semibold mb-4">
-                  "So why are you applying to Data Science, Web Dev, Fullstack?"
+                  "So why are you applying to Data Science, Web Dev, Fullstack, IT?"
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  One of my favorite quotes is from Robert A. Heinlein, it's a
-                  mouthful, but it really speaks to me about the human experience.
-                  I could never imagine myself doing one specific thing for the
-                  rest of my life. I am looking at any opportunity to expand my
-                  knowledge and skillset. I am a dedicated problem solver, and the
+                &emsp;One of my favorite quotes is from{" "}
+                  <ComicBubble quote="A human being should be able to change a diaper, plan an invasion, butcher a hog, conn a ship, design a building, write a sonnet, balance accounts, build a wall, set a bone, comfort the dying, take orders, give orders, cooperate, act alone, solve equations, analyze a new problem, pitch manure, program a computer, cook a tasty meal, fight efficiently, die gallantly. Specialization is for insects.">
+                    Robert A. Heinlein
+                  </ComicBubble>
+                  , it's a mouthful, but it really speaks to me about the human
+                  experience. I could never imagine myself doing one specific thing
+                  for the rest of my life. I am looking at any opportunity to expand
+                  my knowledge and skillset.
+                  <br></br>
+                  &emsp;I am a dedicated problem solver, and the
                   more interesting the problem the more resources, skills, and
-                  knowledge I have to acquire.
+                  knowledge I have to solve problems is what I search for.
                 </p>
               </div>
 

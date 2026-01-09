@@ -4,12 +4,17 @@ import { ArrowDown } from "lucide-react"
 
 export function Hero() {
   const [currentWord, setCurrentWord] = useState(0)
-  const words = ["Always", "Building", "Something"]
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const words = ["Building", "Breaking"]
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentWord((prev) => (prev + 1) % words.length)
-    }, 3000)
+      setIsTransitioning(true)
+      setTimeout(() => {
+        setCurrentWord((prev) => (prev + 1) % words.length)
+        setIsTransitioning(false)
+      }, 500) // Half the transition duration
+    }, 8000)
     return () => clearInterval(interval)
   }, [])
 
@@ -26,8 +31,18 @@ export function Hero() {
       <div className="container mx-auto text-center">
         <div className="space-y-6 md:space-y-8">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-            <span className="block mb-2">{words[currentWord]}</span>
-            <span className="text-primary">Building</span>
+            <span className="text-primary">Always</span>
+            <br></br>
+            <span className="relative">
+              <span 
+                className={`block mb-2 transition-all duration-500 ease-in-out ${
+                  isTransitioning ? 'opacity-0 blur-[2px]' : 'opacity-100 blur-0'
+                }`}
+              >
+                {words[currentWord]}
+              </span>
+            </span>
+            <span className="text-primary">Something</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
             Engineer at heart, building digital products and solving interesting
