@@ -33,7 +33,7 @@ export function About() {
                   physical world. If Milwaukee or Dewalt have made a tool then I
                   have used it at some point in my life. I've spent time in
                   residential, commercial, and mostly the industrial construction
-                  sector, sepcifically semi-conductor fabrication.
+                  sector, specifically semiconductor fabrication.
                 </p>
               </div>
 
@@ -46,12 +46,12 @@ export function About() {
                 <p className="text-muted-foreground leading-relaxed">
                   &emsp;I am an engineer at heart, but the formal education was not
                   something within my reach at a young age. After saving up enough money, I enrolled and obtained my Bachelors in Computer Science from CSU Global.
-                  While at CSU Global, I took a few courses in AI, Machine Learning, and Object Oriented Programming. 
+                  While at CSU Global, I took a few courses in AI, Machine Learning, DSA, and Object Oriented Programming. 
                   <br></br>&emsp; I enjoy continuous
                   learning and exposure to advanced subjects. It is my hope to one
                   day be a "full stack" robotics engineer from software to
                   fabrication. Currently seeking a Master's in Computer Science and afterwards intend on attending an engineering school for a Master's in Robotics.
-                   <br></br>&emsp;I've never lived in one place for more than a couple of years so it's difficult to attend a an in-person university which I would prefer.
+                   <br></br>&emsp;I've never lived in one place for more than a couple of years so it's difficult to attend an in-person university which I would prefer.
                 </p>
               </div>
 
@@ -59,7 +59,7 @@ export function About() {
 
               <div>
                 <h3 className="text-2xl font-semibold mb-4">
-                  "So why are you applying to Data Science, Web Dev, Fullstack, IT?"
+                  "So, Sam, why are you applying to Data Science, Web Dev, Fullstack, IT?"
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
                 &emsp;One of my favorite quotes is from{" "}
@@ -71,9 +71,7 @@ export function About() {
                   for the rest of my life. I am looking at any opportunity to expand
                   my knowledge and skillset.
                   <br></br>
-                  &emsp;I am a dedicated problem solver, and the
-                  more interesting the problem the more resources, skills, and
-                  knowledge I have to solve problems is what I search for.
+                  &emsp;I am a dedicated problem solver wrapped over a creative heart. 
                 </p>
               </div>
 

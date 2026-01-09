@@ -17,7 +17,7 @@ const projects = [
     subtitle: "Project Zomboid Mod",
     description:
       "Use Lua programming API to hijack Java engine lighting commands to give users the ability to read books inside their cars." +
-      " Mod is depreacted after feature was implemented into the game. The fun challenege was using Lua tables to access and inspect unnoficial API for Java objects to generate light on the map.",
+      " Mod is deprecated after the feature was implemented into the game. The fun challenge was using Lua tables to access and inspect unofficial API for Java objects to generate light on the map.",
     tech: ["Java", "Lua"],
     image: "/img/didl_snap.png",
     link: "https://github.com/sam-trafton-dev/DIDL",
@@ -26,7 +26,7 @@ const projects = [
     title: "Bankwave: Neon Networth",
     subtitle: "itch.io/bankwave",
     description:
-      "Interned with indie game studio to extend game jam edition into full size game for kickstarter campaign. My first experience with Go and concurrency patters like Fan Out, Fan In, and Rate Limiting with Workers.",
+      "Interned with indie game studio to extend game jam edition into full-size game for Kickstarter campaign. My first experience with Go and concurrency patterns like Fan Out, Fan In, and Rate Limiting with Workers.",
     tech: ["Go", "YarnSpinner", "Ebitengine"],
     image: "/img/bankwave_logo.png",
     link: "https://frabjous-studios.itch.io/bankwave",
@@ -34,7 +34,7 @@ const projects = [
   {
     title: "Swipe Slam",
     subtitle: "Android CRUD Application",
-    description: "Android CRUD application for adlib poetry prompts. User can create, read, update, and delete prompts and add to eachothers poems. No longer published.",
+    description: "Android CRUD application for adlib poetry prompts. Users can create, read, update, and delete prompts and add to each other's poems. No longer published.",
     tech: ["Kotlin", "Firebase", "Google Cloud Functions"],
     image: "/img/swipeslam.png",
     link: null,
@@ -61,7 +61,7 @@ export function Projects() {
             <h2 className="text-4xl md:text-5xl font-bold">Projects</h2>
             <Separator className="w-24 mx-auto" />
             <p className="text-bold-foreground max-w-2xl mx-auto">
-              Some people advise pruning projects as you grow, but learning is a journey and littered trail of ugly code. I have put a star next to what I am currenlty most proud of.
+              Some people advise pruning projects as you grow, but learning is a journey with a littered trail of ugly code. I have put a star next to what I am currently most proud of.
             </p>
           </div>
 

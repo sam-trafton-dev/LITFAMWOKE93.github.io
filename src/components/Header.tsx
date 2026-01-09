@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { Menu, X } from "lucide-react"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -10,21 +11,41 @@ import {
 } from "@/components/ui/sheet"
 import { ThemeToggle } from "@/components/ThemeToggle"
 
+interface NavItem {
+  label: string
+  href: string
+  type: "scroll" | "route" | "external"
+}
+
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
 
-  const navItems = [
-    { label: "Home", href: "#hero" },
-    { label: "About Me", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "mailto:admin@samtrafton.dev?subject=Hello Sam," },
+  const navItems: NavItem[] = [
+    { label: "Home", href: "/", type: "route" },
+    { label: "About Me", href: "#about", type: "scroll" },
+    { label: "Projects", href: "#projects", type: "scroll" },
+    { label: "DevLog", href: "/devlog", type: "route" },
+    { label: "Contact", href: "mailto:admin@samtrafton.dev?subject=Hello Sam,", type: "external" },
   ]
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (item: NavItem) => {
     setIsOpen(false)
-    if (href.startsWith("#")) {
-      const element = document.querySelector(href)
-      element?.scrollIntoView({ behavior: "smooth" })
+    
+    if (item.type === "scroll") {
+      // If we're not on the home page, navigate there first then scroll
+      if (location.pathname !== "/") {
+        navigate("/")
+        // Wait for navigation then scroll
+        setTimeout(() => {
+          const element = document.querySelector(item.href)
+          element?.scrollIntoView({ behavior: "smooth" })
+        }, 100)
+      } else {
+        const element = document.querySelector(item.href)
+        element?.scrollIntoView({ behavior: "smooth" })
+      }
     }
   }
 
@@ -38,16 +59,23 @@ export function Header() {
           <ul className="flex items-center gap-6">
             {navItems.map((item) => (
               <li key={item.label}>
-                {item.href.startsWith("mailto:") ? (
+                {item.type === "external" ? (
                   <a
                     href={item.href}
                     className="text-sm font-medium hover:text-primary transition-colors"
                   >
                     {item.label}
                   </a>
+                ) : item.type === "route" ? (
+                  <Link
+                    to={item.href}
+                    className="text-sm font-medium hover:text-primary transition-colors"
+                  >
+                    {item.label}
+                  </Link>
                 ) : (
                   <button
-                    onClick={() => handleNavClick(item.href)}
+                    onClick={() => handleNavClick(item)}
                     className="text-sm font-medium hover:text-primary transition-colors"
                   >
                     {item.label}
@@ -75,7 +103,7 @@ export function Header() {
               <ul className="flex flex-col gap-4">
                 {navItems.map((item) => (
                   <li key={item.label}>
-                    {item.href.startsWith("mailto:") ? (
+                    {item.type === "external" ? (
                       <a
                         href={item.href}
                         className="text-lg font-medium hover:text-primary transition-colors block"
@@ -83,9 +111,17 @@ export function Header() {
                       >
                         {item.label}
                       </a>
+                    ) : item.type === "route" ? (
+                      <Link
+                        to={item.href}
+                        className="text-lg font-medium hover:text-primary transition-colors block"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
                     ) : (
                       <button
-                        onClick={() => handleNavClick(item.href)}
+                        onClick={() => handleNavClick(item)}
                         className="text-lg font-medium hover:text-primary transition-colors text-left w-full"
                       >
                         {item.label}
