@@ -1,154 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sam Trafton</title>
-    <link rel="icon" type="image/png" href="resources/img/favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <script  src="main.js" defer></script>
-  <script src="welding.js" defer></script>
-</head>
-
-<body>
-
- 
-  <header>
-    <nav class="navbar font-z" >
-      
-      
-     
-      <ul class="links-container front-z" >
-        <li class="link-items"><a href="#hero-section" class="links">Home</a></li>
-        <li class="link-items"><a href="#about-section" class="links">About Me</a></li>
-        <li class="link-items"><a href="#project-section" class="links">Projects</a></li>
-        <li class="link-items"><a href="mailto:admin@samtrafton.dev?subject=Hello Sam," class="links">Contact</a></li>
-        <li class="link-items">Why is the site raw HTML/CSS/JS<div id="why-raw-vis" class="breathing hoverable" data-text=" ">( ? )</div></li>
-        
-      </ul>
-
-      <ul>
-        <div class="socials-container front-z" >
-        <div class="socials"><a href="https://www.linkedin.com/in/sam-trafton-042334244/"><img src="https://github.com/LITFAMWOKE93/LITFAMWOKE93.github.io/blob/main/resources/img/linkedin.png?raw=true" alt="LinkedIn media icon"  class="social-img"></a></div>
-        <div class="socials"><a href="https://github.com/sam-trafton-dev"><img src="https://github.com/LITFAMWOKE93/LITFAMWOKE93.github.io/blob/main/resources/img/github.png?raw=true" alt="Github media icon" class="social-img"></a></div>
-<!--        <div class="socials"><img src="https://mastodon.social/packs/media/images/logo-d4b5dc90fd3e117d141ae7053b157f58.svg"  alt="Mastodon media icon" class="social-img"></div>-->
-        <a class="invisible" rel="me" href="https://mastodon.social/@litfamwoke">Mastodon</a>
-        </div>
-      </ul>
-
-    </nav>
-   
-
-    <main id ="hero-section" class="back-z">
-      <div class="hero-info">
-        <h1 class="hero-heading">Always</h1>
-        <!--TODO: Where animations go -->
-
-        
-        
-        
-
-        
-      </div>
-    </main>
-
-  
-
-  </header>
-
-  <div id="overlay" class="overlay hidden">
-    <p id="overlay-text"></p>
-  </div>
-
-  <section id="about-section" class="back-z">
-    <h1 class="hero-heading back-z"><span>Building</span></h1>
-        
-      
-      <div class="about-heading">
-        <h1>My name is Sam</h1>
-
-        <p class="about-p">I have spent 13 years learning how to build things in the physical world. If Milwaukee or Dewalt have made a tool
-          then I have used it at some point in my life. I've spent time in residential, commercial, but mostly the industrial construction sector.  </p>
-
-          <h1>But now I want to build digital products</h1>
-        <p class="about-p">I am an engineer at heart, but the formal education was not something within my reach at a young age. I enjoy continuous learning and exposure to advanced subjects.
-          It is my hope to one day be a "full stack" robotics engineer from software to fabrication.
-        </p>
-        <h1>"So why are you applying to Data Science, Web Dev, Fullstack?" - You </h1>
-        <p class="about-p">One of my favorite quotes is from Robert A. Heinlein
-          <span id="heinlein-quote-vis" class="breathing hoverable" data-text=" ">(?)</span>, it's a mouthful, but it really speaks to me about the human experience. I could never imagine myself doing one specific thing for the rest of my life. I am looking at any opportunity to expand my knowledge and skillset. I am a dedicated problem solver, and the more interesting the problem the more resources, skills, and knowledge I have to acquire.
-
-          
-        </p>
-       
-      </div>
-    
-   
-     
-      
-  </section>
-
-  <section id="project-section" class="back-z">
-    
-      <h1 class="hero-heading"> Something</h1>
-    
-      <div class="projects-container back-z" >
-        <div class="project-card">
-          <img src="resources/img/didl_snap.png" alt="Project Image">
-          <div class="card-info-container">
-            <h4><b>Dynamic Imposter's Dome Lights(Project Zomboid Mod)</b></h4>
-            <p>Java/Lua</p>
-            <p>Use Lua programming API to hijack Java engine lighting commands to give users the ability to read books inside their cars</p>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <img src="resources/img/bankwave_logo.png" alt="Project Image">
-          <div class="card-info-container">
-            <h4><b>Bankwave: Neon Networth <a href="https://frabjous-studios.itch.io/bankwave">itch.io/bankwave</a></b></h4>
-            <p>Go</p>
-            <p>Interned with indie game studio to extend game jam edition into full size game for kickstarter campaign</p>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <img src="resources/img/swipeslam.png" alt="Project Image">
-          <div class="card-info-container">
-            <h4><b>Swipe Slam</b></h4>
-            <br>
-            <p>Kotlin/Firebase</p>
-            <p>Android CRUD application for adlib poetry</p>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <img src="resources/img/if_i_had_one.png" alt="Project Image">
-          
-            <h4><b>Project Name</b></h4>
-          <br>
-            <p>Small description</p>
-        </div>
-
-      </div>
-
-  </section>
-
-  <!-- Maybe will have a footer -->
-  <footer>
-    <div class="footer-info">
-
-    </div>
-  </footer>
-
-
-
-  
-  
- 
- 
-</body>
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme') || 'system'
+        if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark')
+        }
+      })()
+    </script>
+    <script type="module" crossorigin src="/assets/index-KLeP-E5X.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CjAVk3fO.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
+
