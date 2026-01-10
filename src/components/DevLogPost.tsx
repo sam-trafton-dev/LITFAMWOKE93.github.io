@@ -1,9 +1,37 @@
 import { useParams, Link, Navigate } from "react-router-dom"
+import { lazy, Suspense } from "react"
 import { ArrowLeft, Calendar, Tag } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { getPostBySlug } from "@/data/posts"
-import { CodeBlock } from "@/components/CodeBlock"
+
+// Lazy load syntax highlighter - it's heavy!
+const CodeBlock = lazy(() => import("@/components/CodeBlock"))
+
+// Fallback for code blocks while loading
+function CodeBlockFallback() {
+  return (
+    <div className="my-6 rounded-lg overflow-hidden border border-border">
+      <div className="px-4 py-2 bg-muted/50 border-b border-border">
+        <div className="h-4 w-20 bg-muted animate-pulse rounded" />
+      </div>
+      <div className="p-4 space-y-2">
+        <div className="h-4 w-3/4 bg-muted animate-pulse rounded" />
+        <div className="h-4 w-1/2 bg-muted animate-pulse rounded" />
+        <div className="h-4 w-2/3 bg-muted animate-pulse rounded" />
+      </div>
+    </div>
+  )
+}
+
+// Wrapped CodeBlock with Suspense
+function LazyCodeBlock(props: { code: string; language: string; filename?: string }) {
+  return (
+    <Suspense fallback={<CodeBlockFallback />}>
+      <CodeBlock {...props} />
+    </Suspense>
+  )
+}
 
 // Post content components - each post's full content lives here
 function BuildingPortfolioContent() {
@@ -30,7 +58,7 @@ function BuildingPortfolioContent() {
         a solid foundation:
       </p>
 
-      <CodeBlock
+      <LazyCodeBlock
         language="bash"
         filename="terminal"
         code={`npm create vite@latest my-portfolio -- --template react-ts
@@ -42,7 +70,7 @@ npm install`}
         Then adding Tailwind and shadcn/ui:
       </p>
 
-      <CodeBlock
+      <LazyCodeBlock
         language="bash"
         filename="terminal"
         code={`npm install -D tailwindcss postcss autoprefixer
@@ -56,7 +84,7 @@ npx shadcn@latest init`}
         of how I structured a simple card component:
       </p>
 
-      <CodeBlock
+      <LazyCodeBlock
         language="tsx"
         filename="src/components/ProjectCard.tsx"
         code={`interface ProjectCardProps {
@@ -129,7 +157,7 @@ function GitHubActionsContent() {
         a basic CI workflow:
       </p>
 
-      <CodeBlock
+      <LazyCodeBlock
         language="yaml"
         filename=".github/workflows/ci.yml"
         code={`name: CI
@@ -169,7 +197,7 @@ jobs:
         deployment workflow:
       </p>
 
-      <CodeBlock
+      <LazyCodeBlock
         language="yaml"
         filename=".github/workflows/deploy.yml"
         code={`name: Deploy

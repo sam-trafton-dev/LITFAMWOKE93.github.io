@@ -10,7 +10,7 @@ interface CodeBlockProps {
   filename?: string
 }
 
-export function CodeBlock({ code, language, filename }: CodeBlockProps) {
+function CodeBlock({ code, language, filename }: CodeBlockProps) {
   const [isDark, setIsDark] = useState(false)
   const [copied, setCopied] = useState(false)
 
@@ -79,4 +79,6 @@ export function CodeBlock({ code, language, filename }: CodeBlockProps) {
     </div>
   )
 }
+
+export default CodeBlock
 
