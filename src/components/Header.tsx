@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import { Menu } from "lucide-react"
+import { Menu, Coffee } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -52,7 +52,7 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm border-b border-border/50">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="text-xl font-semibold">Sam Trafton</div>
+        <div className="text-xl font-semibold">Sam Trafton <a href="https://ko-fi.com/dynamicimposter" target="_blank" rel="noopener noreferrer"><Coffee /></a></div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
