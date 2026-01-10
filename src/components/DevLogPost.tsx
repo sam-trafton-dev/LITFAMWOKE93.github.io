@@ -246,7 +246,7 @@ const postContent: Record<string, React.ReactNode> = {
   "github-actions-ci-cd": <GitHubActionsContent />,
 }
 
-export function DevLogPost() {
+export default function DevLogPost() {
   const { slug } = useParams<{ slug: string }>()
   const post = slug ? getPostBySlug(slug) : undefined
 
