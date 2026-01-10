@@ -21,6 +21,13 @@ export interface PostMeta {
 
 export const posts: PostMeta[] = [
   {
+    slug: "engineering-mindset-dome-lights",
+    title: "The Engineering Mindset: A Story About Dome Lights",
+    date: "2024-01-12",
+    excerpt: "When you notice something doesn't work right and you just can't let it go. A story about building my first game mod with zero knowledge of Lua, modding, or the game engine.",
+    tags: ["Game Modding", "Lua", "Problem Solving", "Project Zomboid"],
+  },
+  {
     slug: "building-my-portfolio-site",
     title: "Building My Portfolio Site with React & Tailwind",
     date: "2024-01-09",

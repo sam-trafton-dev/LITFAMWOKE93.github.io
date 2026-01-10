@@ -268,8 +268,213 @@ jobs:
   )
 }
 
+function EngineeringMindsetContent() {
+  return (
+    <article className="prose prose-lg dark:prose-invert max-w-none">
+      <p>
+        It was a quiet night in the apocalypse. I'd found a decent car, scavenged some
+        gas, and was ready to hole up and read a mechanics manual. Just one problem:
+        it was pitch black, and my character couldn't see the pages.
+      </p>
+
+      <p>
+        "Okay," I thought, "I'll just turn on the headlights." Nope. Still can't read.
+        "What about equipping a flashlight?" Nothing. The game simply didn't support
+        reading inside a vehicle at night. For a simulation game that prides itself on
+        realism, this felt absurd.
+      </p>
+
+      <p>
+        I'd always imagined that surviving a zombie apocalypse would involve a lot of
+        time in a mobile rig—our sweet skoolie build dream made real in a digital hellscape.
+        Reading, crafting, waiting out the night in relative safety. But here was Project
+        Zomboid telling me that was impossible.
+      </p>
+
+      <p>
+        <strong>I couldn't let it go.</strong>
+      </p>
+
+      <h2>Starting from Zero</h2>
+
+      <p>
+        I had zero modding knowledge for Project Zomboid. Zero knowledge of Lua. Zero
+        understanding of PZ's core engine. But something in my brain just... activated.
+        It was like being possessed. In my heart, I knew: <em>"what I'm doing needs to
+        be done."</em>
+      </p>
+
+      <p>
+        That might seem silly for modding a game. But this mindset extends to every area
+        of my work. When something's broken and I know it can be fixed, I can't rest until
+        I figure it out. It's not optional—it's compulsive.
+      </p>
+
+      <p>
+        Within a week, I had:
+      </p>
+
+      <ul>
+        <li>Connected with the PZ modding community on Discord</li>
+        <li>Hunted down every scrap of documentation about the engine API</li>
+        <li>Set up a version-controlled repo</li>
+        <li>Started breaking things</li>
+      </ul>
+
+      <h2>The Technical Challenge</h2>
+
+      <p>
+        The mod itself was conceptually simple: add a "Dome Light" part to vehicles that
+        players could toggle to illuminate the interior. The implementation required:
+      </p>
+
+      <ul>
+        <li>Server/client functions for vehicle state synchronization</li>
+        <li>Modifications to vehicle spawning and generation data files</li>
+        <li>A new car part called "DomeLight"</li>
+        <li>Pixel art for the UI menu</li>
+        <li>Steam Workshop publishing</li>
+      </ul>
+
+      <p>
+        But here's where it got interesting: the light objects and methods I needed
+        weren't public. The modding API didn't expose them.
+      </p>
+
+      <h2>Breaking Into the Engine</h2>
+
+      <p>
+        The biggest challenge was accessing light functionality that the developers
+        never intended modders to touch. PZ runs on a Java engine with Lua scripting
+        on top, using Kahlua as the bridge. I had two options:
+      </p>
+
+      <ol>
+        <li>Use reflection to expose private Java classes through Lua</li>
+        <li>Decompile the source code and figure out what to call</li>
+      </ol>
+
+      <p>
+        I did both. Here's what inspecting the engine looked like:
+      </p>
+
+      <LazyCodeBlock
+        language="lua"
+        filename="debug_inspection.lua"
+        code={`-- Inspecting Java objects through Kahlua to find hidden methods
+local function inspectObject(obj)
+    local mt = getmetatable(obj)
+    if mt then
+        print("=== Metatable ===")
+        for k, v in pairs(mt) do
+            print(k, type(v))
+        end
+    end
+    
+    -- Try to access Java class methods via reflection
+    local javaClass = obj:getClass()
+    local methods = javaClass:getMethods()
+    
+    for i = 0, methods.length - 1 do
+        local method = methods[i]
+        print(method:getName(), method:getParameterTypes())
+    end
+end
+
+-- Found it: IsoGridSquare has addLampPost() but nothing for interior lights
+-- Vehicle class has nothing public for lighting
+-- Had to dig deeper into the rendering system...`}
+      />
+
+      <p>
+        After hours of inspection, I found that light sources in PZ are tied to the
+        map grid, not to objects directly. Vehicles don't "have" lights—they spawn
+        light entities on the grid squares they occupy. The dome light needed to
+        create and manage its own light source:
+      </p>
+
+      <LazyCodeBlock
+        language="lua"
+        filename="DomeLight.lua"
+        code={`-- Core dome light functionality
+DomeLights = DomeLights or {}
+
+function DomeLights.toggleLight(vehicle, player)
+    local domeLightPart = vehicle:getPartById("DomeLight")
+    if not domeLightPart then return end
+    
+    local isOn = domeLightPart:getModData().isOn or false
+    
+    if isOn then
+        DomeLights.removeLight(vehicle)
+        domeLightPart:getModData().isOn = false
+    else
+        DomeLights.createLight(vehicle)
+        domeLightPart:getModData().isOn = true
+    end
+    
+    -- Sync state to server
+    sendClientCommand(player, "DomeLights", "sync", {
+        vehicleId = vehicle:getId(),
+        isOn = not isOn
+    })
+end
+
+function DomeLights.createLight(vehicle)
+    local sq = vehicle:getSquare()
+    if not sq then return end
+    
+    -- This was the key discovery - using IsoLightSource directly
+    local light = IsoLightSource.new(
+        sq:getX(), sq:getY(), sq:getZ(),
+        0.9, 0.85, 0.7,  -- Warm interior light color
+        6,               -- Radius
+        0                -- Offset
+    )
+    
+    vehicle:getModData().domeLightSource = light
+    sq:addLightSource(light)
+end`}
+      />
+
+      <h2>The Payoff</h2>
+
+      <p>
+        After about a week of obsessive work, I published "Dynamic Imposter's Dome Lights"
+        to the Steam Workshop. Players could finally read, craft, and do anything else
+        inside their vehicles at night.
+      </p>
+
+      <p>
+        The funny part? The very next build release, the developers added official interior
+        lighting to vehicles. My mod became deprecated. But that wasn't the point.
+      </p>
+
+      <h2>Why This Matters</h2>
+
+      <p>
+        This project taught me something important about how I work. When I see something
+        broken—something that <em>should</em> work but doesn't—a switch flips in my brain.
+        It's not about the size of the problem or whether anyone else cares. It's about
+        the gap between "what is" and "what should be."
+      </p>
+
+      <p>
+        That gap is where I live. Whether it's a missing feature in a game, a bug in
+        production code, or a manual process that should be automated—once I see it,
+        I can't unsee it.
+      </p>
+
+      <p>
+        That's problem solving.
+      </p>
+    </article>
+  )
+}
+
 // Map slugs to content components
 const postContent: Record<string, React.ReactNode> = {
+  "engineering-mindset-dome-lights": <EngineeringMindsetContent />,
   "building-my-portfolio-site": <BuildingPortfolioContent />,
   "github-actions-ci-cd": <GitHubActionsContent />,
 }
