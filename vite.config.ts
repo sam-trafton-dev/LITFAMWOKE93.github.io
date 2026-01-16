@@ -10,8 +10,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/', // Custom domain, so base is root
   build: {
-    outDir: 'docs',
-    emptyOutDir: false, // Don't empty docs folder to preserve CNAME and _config.yml
+    outDir: 'dist',
   },
   resolve: {
     alias: {
