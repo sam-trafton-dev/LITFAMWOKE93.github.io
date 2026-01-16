@@ -1,6 +1,60 @@
+import { useState, useEffect } from "react"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Mail, Database } from "lucide-react"
 import { Button } from "@/components/ui/button"
+
+// Terminal readout messages
+const READOUT_MESSAGES = [
+  "NOTE: SOME_ADVISE_PRUNING_PROJECTS //",
+  "LEARNING_IS_JOURNEY //",
+  "CODE_TRAIL_SHOWS_GROWTH //",
+  "STARRED_ITEMS = CURRENT_PRIDE. . . ",
+  ". . .",
+  "END TRANSMISSION"
+]
+
+// Terminal readout component with typing effect
+function TerminalReadout() {
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0)
+  const [displayText, setDisplayText] = useState("")
+  const [isTyping, setIsTyping] = useState(true)
+
+  useEffect(() => {
+    const currentMessage = READOUT_MESSAGES[currentMessageIndex]
+    
+    if (isTyping) {
+      // Typing phase
+      if (displayText.length < currentMessage.length) {
+        const timeout = setTimeout(() => {
+          setDisplayText(currentMessage.slice(0, displayText.length + 1))
+        }, 30) // Typing speed
+        return () => clearTimeout(timeout)
+      } else {
+        // Finished typing, pause before clearing
+        const timeout = setTimeout(() => {
+          setIsTyping(false)
+        }, 2000) // Pause to read
+        return () => clearTimeout(timeout)
+      }
+    } else {
+      // Clearing phase - move to next message
+      const timeout = setTimeout(() => {
+        setDisplayText("")
+        setCurrentMessageIndex((prev) => (prev + 1) % READOUT_MESSAGES.length)
+        setIsTyping(true)
+      }, 300) // Brief pause before next message
+      return () => clearTimeout(timeout)
+    }
+  }, [displayText, currentMessageIndex, isTyping])
+
+  return (
+    <div className="text-sm text-muted-foreground max-w-2xl mx-auto pt-4 border border-border p-4 bg-background/50 min-h-[60px] flex items-center">
+      <span className="text-primary">&gt; </span>
+      <span className="text-flicker">{displayText}</span>
+      <span className="cursor-blink text-primary ml-0.5">█</span>
+    </div>
+  )
+}
 
 const projects = [
   {
@@ -72,11 +126,7 @@ export function Projects() {
             <div className="text-xs text-muted-foreground tracking-widest">
               ════════════════════════════════════════
             </div>
-            <p className="text-sm text-muted-foreground max-w-2xl mx-auto pt-4 border border-border p-4 bg-background/50">
-              <span className="text-primary">&gt; </span>
-              NOTE: SOME_ADVISE_PRUNING_PROJECTS // LEARNING_IS_JOURNEY // 
-              CODE_TRAIL_SHOWS_GROWTH // STARRED_ITEMS = CURRENT_PRIDE
-            </p>
+            <TerminalReadout />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

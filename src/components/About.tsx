@@ -52,8 +52,11 @@ export function About() {
                 
                 <div className="data-label mb-2">&gt; EXPERIENCE_LOG</div>
                 <p className="text-muted-foreground leading-relaxed text-sm">
-                  13 YEARS PHYSICAL CONSTRUCTION // RESIDENTIAL.COMMERCIAL.INDUSTRIAL // 
-                  SPECIALIZATION: SEMICONDUCTOR_FABRICATION // TOOLS: MILWAUKEE.DEWALT.ALL_POWER_EQUIPMENT
+                  1 YEAR TECHNICAL SOLUTIONS SPECIALIST // FLUTTER+C#+FIREBASE<br></br>
+                  0.4 YEAR SOFTWARE ENGINEERING INTERN // GO+YARNSPINNER+EBITENGINE<br></br>
+                  0.4 YEAR SOFTWARE ENGINEERING INTERN // C#+UNITY<br></br>
+                  13 YEARS PHYSICAL CONSTRUCTION // RESIDENTIAL.COMMERCIAL.INDUSTRIAL // SEMICONDUCTOR FABRICATION
+                  SPECIALIZATION: WELDING // TOOLS: MILWAUKEE.DEWALT.ALL_POWER_EQUIPMENT
                 </p>
               </div>
 
@@ -65,11 +68,11 @@ export function About() {
                 <h3 className="text-xl font-terminal text-primary mb-3">DIGITAL_PRODUCT_DEVELOPMENT</h3>
                 <p className="text-muted-foreground leading-relaxed text-sm">
                   EDUCATION: BS_COMPUTER_SCIENCE // CSU_GLOBAL<br/>
-                  COURSEWORK: AI.MACHINE_LEARNING.DSA.OOP<br/><br/>
-                  OBJECTIVE: FULL_STACK_ROBOTICS_ENGINEER<br/>
+                  COURSEWORK: AI.MACHINE_LEARNING.DSA.OOP.MOBILE_DEV<br/><br/>
+                  OBJECTIVE: FULL_STACK_ENGINEER<br/>
                   STATUS: SEEKING_MS_COMPUTER_SCIENCE<br/>
                   FUTURE: MS_ROBOTICS_ENGINEERING<br/><br/>
-                  NOTE: NOMADIC_LIFESTYLE // REMOTE_EDUCATION_PREFERRED
+                  NOTE: NOMADIC_LIFESTYLE
                 </p>
               </div>
 
@@ -89,7 +92,7 @@ export function About() {
                   <br/><br/>
                   ANALYSIS: SPECIALIZATION_FOR_INSECTS // HUMAN_EXPERIENCE_REQUIRES_DIVERSITY<br/>
                   CONCLUSION: SEEK_ALL_OPPORTUNITIES // EXPAND_KNOWLEDGE_BASE<br/><br/>
-                  CORE_IDENTITY: PROBLEM_SOLVER + CREATIVE_PROCESSOR
+                  CORE_IDENTITY: PROBLEM_SOLVER + CREATIVE_HEART
                 </p>
               </div>
 
