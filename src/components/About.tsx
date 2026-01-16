@@ -1,5 +1,4 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { ComicBubble } from "@/components/ComicBubble"
 
@@ -11,79 +10,108 @@ export function About() {
     >
       <div className="container mx-auto max-w-4xl">
         <div className="space-y-8 md:space-y-12">
+          {/* Header */}
           <div className="text-center space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold">My name is Sam</h2>
-            <Separator className="w-24 mx-auto" />
+            <div className="text-xs text-muted-foreground tracking-widest">
+              ════════════════════════════════════════
+            </div>
+            <h2 className="text-4xl md:text-5xl font-terminal text-glow">
+              [ PERSONNEL FILE ]
+            </h2>
+            <div className="text-xs text-muted-foreground tracking-widest">
+              CLEARANCE: PUBLIC // ACCESS: GRANTED
+            </div>
+            <div className="text-xs text-muted-foreground tracking-widest">
+              ════════════════════════════════════════
+            </div>
           </div>
 
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-            <Avatar className="h-32 w-32 md:h-40 md:w-40">
-              <AvatarImage
-                src="/img/Profile_pic_resize.jpg"
-                alt="Sam Trafton"
-              />
-              <AvatarFallback>ST</AvatarFallback>
-            </Avatar>
-
-            <div className="flex-1 space-y-6 text-center md:text-left">
-              <div>
-                <h3 className="text-2xl font-semibold mb-4">I have spent 13 years</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  learning how to build things in the
-                  physical world. If Milwaukee or Dewalt have made a tool then I
-                  have used it at some point in my life. I've spent time in
-                  residential, commercial, and mostly the industrial construction
-                  sector, specifically semiconductor fabrication.
-                </p>
+            {/* Avatar with terminal frame */}
+            <div className="relative">
+              <div className="border-2 border-primary/50 p-1 border-glow">
+                <Avatar className="h-32 w-32 md:h-40 md:w-40 rounded-none">
+                  <AvatarImage
+                    src="/img/Profile_pic_resize.jpg"
+                    alt="Sam Trafton"
+                    className="rounded-none"
+                  />
+                  <AvatarFallback className="rounded-none bg-card font-terminal text-2xl">ST</AvatarFallback>
+                </Avatar>
               </div>
-
-              <Separator />
-
-              <div>
-                <h3 className="text-2xl font-semibold mb-4">
-                  Now I'm focused on building digital products
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  &emsp;I am an engineer at heart, but the formal education was not
-                  something within my reach at a young age. After saving up enough money, I enrolled and obtained my Bachelors in Computer Science from CSU Global.
-                  While at CSU Global, I took a few courses in AI, Machine Learning, DSA, and Object Oriented Programming. 
-                  <br></br>&emsp; I enjoy continuous
-                  learning and exposure to advanced subjects. It is my hope to one
-                  day be a "full stack" robotics engineer from software to
-                  fabrication. Currently seeking a Master's in Computer Science and afterwards intend on attending an engineering school for a Master's in Robotics.
-                   <br></br>&emsp;I've never lived in one place for more than a couple of years so it's difficult to attend an in-person university which I would prefer.
-                </p>
-              </div>
-
-              <Separator />
-
-              <div>
-                <h3 className="text-2xl font-semibold mb-4">
-                  "So, Sam, why are you applying to Data Science, Web Dev, Fullstack, IT?"
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                &emsp;One of my favorite quotes is from{" "}
-                  <ComicBubble quote="A human being should be able to change a diaper, plan an invasion, butcher a hog, conn a ship, design a building, write a sonnet, balance accounts, build a wall, set a bone, comfort the dying, take orders, give orders, cooperate, act alone, solve equations, analyze a new problem, pitch manure, program a computer, cook a tasty meal, fight efficiently, die gallantly. Specialization is for insects.">
-                    Robert A. Heinlein
-                  </ComicBubble>
-                  , it's a mouthful, but it really speaks to me about the human
-                  experience. I could never imagine myself doing one specific thing
-                  for the rest of my life. I am looking at any opportunity to expand
-                  my knowledge and skillset.
-                  <br></br>
-                  &emsp;I am a dedicated problem solver wrapped over a creative heart. 
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-2 justify-center md:justify-start pt-4">
-                <Badge variant="secondary">Certified Scrapper</Badge>
-                <Badge variant="secondary">Problem Solver</Badge>
-                <Badge variant="secondary">Continuous Learner</Badge>
-                <Badge variant="secondary">Full Stack Aspirant</Badge>
-                <Badge variant="secondary">Muay Thai Enthusiast</Badge>
-                <Badge variant="secondary">Indie Game Dreamer</Badge>
+              <div className="absolute -bottom-2 left-0 right-0 text-center">
+                <span className="text-xs bg-background px-2 text-primary">ID_VERIFIED</span>
               </div>
             </div>
+
+            <div className="flex-1 space-y-6 text-center md:text-left">
+              {/* Data Entry 1 */}
+              <div className="border border-border p-4 bg-card/30">
+                <div className="data-label mb-2">&gt; DESIGNATION</div>
+                <h3 className="text-2xl font-terminal text-primary mb-3">TRAFTON, SAM</h3>
+                
+                <div className="data-label mb-2">&gt; EXPERIENCE_LOG</div>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  13 YEARS PHYSICAL CONSTRUCTION // RESIDENTIAL.COMMERCIAL.INDUSTRIAL // 
+                  SPECIALIZATION: SEMICONDUCTOR_FABRICATION // TOOLS: MILWAUKEE.DEWALT.ALL_POWER_EQUIPMENT
+                </p>
+              </div>
+
+              <div className="ascii-separator" />
+
+              {/* Data Entry 2 */}
+              <div className="border border-border p-4 bg-card/30">
+                <div className="data-label mb-2">&gt; CURRENT_DIRECTIVE</div>
+                <h3 className="text-xl font-terminal text-primary mb-3">DIGITAL_PRODUCT_DEVELOPMENT</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  EDUCATION: BS_COMPUTER_SCIENCE // CSU_GLOBAL<br/>
+                  COURSEWORK: AI.MACHINE_LEARNING.DSA.OOP<br/><br/>
+                  OBJECTIVE: FULL_STACK_ROBOTICS_ENGINEER<br/>
+                  STATUS: SEEKING_MS_COMPUTER_SCIENCE<br/>
+                  FUTURE: MS_ROBOTICS_ENGINEERING<br/><br/>
+                  NOTE: NOMADIC_LIFESTYLE // REMOTE_EDUCATION_PREFERRED
+                </p>
+              </div>
+
+              <div className="ascii-separator" />
+
+              {/* Data Entry 3 */}
+              <div className="border border-border p-4 bg-card/30">
+                <div className="data-label mb-2">&gt; PHILOSOPHY_QUERY</div>
+                <h3 className="text-lg font-terminal text-primary mb-3">
+                  "WHY_APPLY: DATA_SCI.WEB_DEV.FULLSTACK.IT?"
+                </h3>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  REFERENCED_QUOTE FROM{" "}
+                  <ComicBubble quote="A human being should be able to change a diaper, plan an invasion, butcher a hog, conn a ship, design a building, write a sonnet, balance accounts, build a wall, set a bone, comfort the dying, take orders, give orders, cooperate, act alone, solve equations, analyze a new problem, pitch manure, program a computer, cook a tasty meal, fight efficiently, die gallantly. Specialization is for insects.">
+                    <span className="text-primary underline cursor-pointer hover:text-glow">[HEINLEIN_R.A]</span>
+                  </ComicBubble>
+                  <br/><br/>
+                  ANALYSIS: SPECIALIZATION_FOR_INSECTS // HUMAN_EXPERIENCE_REQUIRES_DIVERSITY<br/>
+                  CONCLUSION: SEEK_ALL_OPPORTUNITIES // EXPAND_KNOWLEDGE_BASE<br/><br/>
+                  CORE_IDENTITY: PROBLEM_SOLVER + CREATIVE_PROCESSOR
+                </p>
+              </div>
+
+              {/* Tags */}
+              <div className="pt-4">
+                <div className="data-label mb-3">&gt; CLASSIFICATION_TAGS</div>
+                <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                  <Badge variant="secondary">CERTIFIED_SCRAPPER</Badge>
+                  <Badge variant="secondary">PROBLEM_SOLVER</Badge>
+                  <Badge variant="secondary">CONTINUOUS_LEARNER</Badge>
+                  <Badge variant="secondary">FULLSTACK_ASPIRANT</Badge>
+                  <Badge variant="secondary">MUAY_THAI_ENTHUSIAST</Badge>
+                  <Badge variant="secondary">INDIE_GAME_DREAMER</Badge>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Footer */}
+          <div className="text-center text-xs text-muted-foreground tracking-widest">
+            ════════════════════════════════════════<br/>
+            [ END_OF_FILE ]
           </div>
         </div>
       </div>

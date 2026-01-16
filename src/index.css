@@ -2,50 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   WEYLAND-YUTANI TERMINAL THEME
+   MU-TH-UR 6000 INTERFACE AESTHETIC
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 210 100% 56%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 100% 98%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 210 100% 56%;
-    --radius: 0.5rem;
+    /* WY Terminal Color Palette - Amber Phosphor */
+    --wy-black: 0 0% 2%;
+    --wy-dark: 30 20% 4%;
+    --wy-amber: 38 100% 50%;
+    --wy-amber-dim: 38 100% 35%;
+    --wy-amber-glow: 38 100% 60%;
+    --wy-amber-muted: 38 50% 25%;
+    --wy-red: 0 100% 50%;
+    
+    /* Map to shadcn variables */
+    --background: var(--wy-black);
+    --foreground: var(--wy-amber);
+    --card: var(--wy-dark);
+    --card-foreground: var(--wy-amber);
+    --popover: var(--wy-dark);
+    --popover-foreground: var(--wy-amber);
+    --primary: var(--wy-amber);
+    --primary-foreground: 0 0% 0%;
+    --secondary: var(--wy-dark);
+    --secondary-foreground: var(--wy-amber);
+    --muted: var(--wy-dark);
+    --muted-foreground: var(--wy-amber-dim);
+    --accent: var(--wy-amber-muted);
+    --accent-foreground: var(--wy-amber);
+    --destructive: var(--wy-red);
+    --destructive-foreground: 0 0% 0%;
+    --border: var(--wy-amber-dim);
+    --input: var(--wy-dark);
+    --ring: var(--wy-amber);
+    --radius: 0rem;
   }
 
+  /* Force dark mode always for terminal aesthetic */
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 100% 56%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 210 100% 56%;
+    --background: var(--wy-black);
+    --foreground: var(--wy-amber);
+    --card: var(--wy-dark);
+    --card-foreground: var(--wy-amber);
+    --popover: var(--wy-dark);
+    --popover-foreground: var(--wy-amber);
+    --primary: var(--wy-amber);
+    --primary-foreground: 0 0% 0%;
+    --secondary: var(--wy-dark);
+    --secondary-foreground: var(--wy-amber);
+    --muted: var(--wy-dark);
+    --muted-foreground: var(--wy-amber-dim);
+    --accent: var(--wy-amber-muted);
+    --accent-foreground: var(--wy-amber);
+    --destructive: var(--wy-red);
+    --destructive-foreground: 0 0% 0%;
+    --border: var(--wy-amber-dim);
+    --input: var(--wy-dark);
+    --ring: var(--wy-amber);
   }
 }
 
@@ -53,8 +69,264 @@
   * {
     @apply border-border;
   }
+  
+  html {
+    font-family: 'Share Tech Mono', monospace;
+    background: #050505;
+  }
+  
   body {
     @apply bg-background text-foreground;
+    font-family: 'Share Tech Mono', monospace;
+    text-shadow: 0 0 10px hsl(38 100% 50% / 0.5), 0 0 20px hsl(38 100% 50% / 0.3);
+    letter-spacing: 0.05em;
+  }
+
+  /* Headings use VT323 for that extra retro feel */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'VT323', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   CRT SCAN LINE EFFECT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crt-scanlines {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  animation: scanlines 0.1s linear infinite;
+}
+
+.crt-vignette {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCREEN FLICKER ANIMATION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  3% { opacity: 0.95; }
+  6% { opacity: 1; }
+  7% { opacity: 0.9; }
+  8% { opacity: 1; }
+  9% { opacity: 0.97; }
+  10% { opacity: 1; }
+  50% { opacity: 1; }
+  51% { opacity: 0.98; }
+  52% { opacity: 1; }
+  75% { opacity: 1; }
+  76% { opacity: 0.93; }
+  77% { opacity: 1; }
+}
+
+@keyframes scanlines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 4px; }
+}
+
+@keyframes text-flicker {
+  0%, 100% { 
+    opacity: 1;
+    text-shadow: 0 0 10px hsl(38 100% 50% / 0.8), 0 0 20px hsl(38 100% 50% / 0.5), 0 0 30px hsl(38 100% 50% / 0.3);
+  }
+  92% { opacity: 1; }
+  93% { opacity: 0.8; }
+  94% { opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes boot-text {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 10px hsl(38 100% 50% / 0.5), 0 0 20px hsl(38 100% 50% / 0.3);
+  }
+  50% {
+    text-shadow: 0 0 15px hsl(38 100% 50% / 0.8), 0 0 30px hsl(38 100% 50% / 0.5), 0 0 40px hsl(38 100% 50% / 0.3);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TERMINAL UTILITY CLASSES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.terminal-flicker {
+  animation: flicker 4s infinite;
+}
+
+.text-flicker {
+  animation: text-flicker 3s infinite;
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.text-glow {
+  text-shadow: 0 0 10px hsl(38 100% 50% / 0.8), 0 0 20px hsl(38 100% 50% / 0.5), 0 0 30px hsl(38 100% 50% / 0.3);
+}
+
+.text-glow-intense {
+  text-shadow: 0 0 10px hsl(38 100% 50% / 1), 0 0 20px hsl(38 100% 50% / 0.8), 0 0 40px hsl(38 100% 50% / 0.5), 0 0 60px hsl(38 100% 50% / 0.3);
+}
+
+.border-glow {
+  box-shadow: 0 0 10px hsl(38 100% 50% / 0.3), inset 0 0 10px hsl(38 100% 50% / 0.1);
+}
+
+.border-glow-intense {
+  box-shadow: 0 0 15px hsl(38 100% 50% / 0.5), 0 0 30px hsl(38 100% 50% / 0.2), inset 0 0 15px hsl(38 100% 50% / 0.1);
+}
+
+/* Terminal prompt styling */
+.terminal-prompt::before {
+  content: '> ';
+  color: hsl(38 100% 50%);
+}
+
+/* ASCII-style separators */
+.ascii-separator {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    hsl(38 100% 50% / 0.5) 10%,
+    hsl(38 100% 50%) 50%,
+    hsl(38 100% 50% / 0.5) 90%,
+    transparent
+  );
+  margin: 1rem 0;
+}
+
+/* Data readout styling */
+.data-label {
+  color: hsl(38 100% 35%);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.25rem;
+}
+
+.data-value {
+  color: hsl(38 100% 50%);
+  font-family: 'VT323', monospace;
+}
+
+/* Status indicator */
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: hsl(38 100% 50%);
+  box-shadow: 0 0 10px hsl(38 100% 50%), 0 0 20px hsl(38 100% 50% / 0.5);
+  animation: blink 2s ease-in-out infinite;
+}
+
+.status-dot-active {
+  background: hsl(120 100% 40%);
+  box-shadow: 0 0 10px hsl(120 100% 40%), 0 0 20px hsl(120 100% 40% / 0.5);
+}
+
+/* Boot sequence styles */
+.boot-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #050505;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  font-family: 'VT323', monospace;
+}
+
+.boot-text {
+  color: hsl(38 100% 50%);
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px hsl(38 100% 50% / 0.8);
+  animation: text-flicker 0.5s infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+  border-left: 1px solid hsl(38 100% 35% / 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(38 100% 35%);
+  border: 1px solid hsl(38 100% 50% / 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(38 100% 50%);
+  box-shadow: 0 0 10px hsl(38 100% 50% / 0.5);
+}
+
+/* Selection styling */
+::selection {
+  background: hsl(38 100% 50% / 0.3);
+  color: hsl(38 100% 60%);
+}
+
+/* Focus styling */
+*:focus-visible {
+  outline: 1px solid hsl(38 100% 50%);
+  outline-offset: 2px;
+  box-shadow: 0 0 10px hsl(38 100% 50% / 0.5);
+}

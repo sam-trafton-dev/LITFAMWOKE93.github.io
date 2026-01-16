@@ -1,6 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom"
 import { lazy, Suspense } from "react"
-import { ArrowLeft, Calendar, Tag } from "lucide-react"
+import { ArrowLeft, Terminal } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { getPostBySlug } from "@/data/posts"
@@ -11,14 +11,15 @@ const CodeBlock = lazy(() => import("@/components/CodeBlock"))
 // Fallback for code blocks while loading
 function CodeBlockFallback() {
   return (
-    <div className="my-6 rounded-lg overflow-hidden border border-border">
-      <div className="px-4 py-2 bg-muted/50 border-b border-border">
-        <div className="h-4 w-20 bg-muted animate-pulse rounded" />
+    <div className="my-6 overflow-hidden border-2 border-border">
+      <div className="px-4 py-2 bg-card/50 border-b border-border flex items-center gap-2">
+        <div className="h-4 w-20 bg-muted/50 animate-pulse" />
+        <span className="text-xs text-muted-foreground">LOADING_SOURCE...</span>
       </div>
-      <div className="p-4 space-y-2">
-        <div className="h-4 w-3/4 bg-muted animate-pulse rounded" />
-        <div className="h-4 w-1/2 bg-muted animate-pulse rounded" />
-        <div className="h-4 w-2/3 bg-muted animate-pulse rounded" />
+      <div className="p-4 space-y-2 bg-background">
+        <div className="h-4 w-3/4 bg-muted/30 animate-pulse" />
+        <div className="h-4 w-1/2 bg-muted/30 animate-pulse" />
+        <div className="h-4 w-2/3 bg-muted/30 animate-pulse" />
       </div>
     </div>
   )
@@ -490,11 +491,8 @@ export default function DevLogPost() {
   const content = postContent[post.slug]
 
   const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })
+    const date = new Date(dateStr)
+    return date.toISOString().replace('T', ' ').substring(0, 19)
   }
 
   return (
@@ -502,34 +500,43 @@ export default function DevLogPost() {
       {/* Back navigation */}
       <div className="pt-24 pb-4 px-4">
         <div className="container mx-auto max-w-4xl">
-          <Button variant="ghost" asChild className="gap-2 -ml-4">
+          <Button variant="ghost" asChild className="gap-2 -ml-4 text-xs tracking-wider">
             <Link to="/devlog">
               <ArrowLeft className="h-4 w-4" />
-              Back to DevLog
+              [ RETURN_TO_LOG_INDEX ]
             </Link>
           </Button>
         </div>
       </div>
 
       {/* Post Header */}
-      <header className="pb-8 px-4 border-b border-border">
+      <header className="pb-8 px-4 border-b-2 border-primary/30">
         <div className="container mx-auto max-w-4xl">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-            <Calendar className="h-4 w-4" />
-            {formatDate(post.date)}
+          <div className="text-xs text-muted-foreground tracking-widest mb-4">
+            ════════════════════════════════════════
+          </div>
+          
+          <div className="flex items-center gap-3 text-xs text-muted-foreground mb-4 font-mono">
+            <Terminal className="h-4 w-4 text-primary" />
+            <span>TIMESTAMP: [{formatDate(post.date)}]</span>
+            <span className="w-2 h-2 bg-green-500 rounded-full" />
+            <span>READABLE</span>
           </div>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-            {post.title}
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-terminal tracking-wider mb-6 text-primary text-glow">
+            {post.title.toUpperCase()}
           </h1>
 
           <div className="flex flex-wrap gap-2">
             {post.tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="gap-1">
-                <Tag className="h-3 w-3" />
-                {tag}
+              <Badge key={tag} variant="secondary">
+                {tag.toUpperCase()}
               </Badge>
             ))}
+          </div>
+          
+          <div className="text-xs text-muted-foreground tracking-widest mt-6">
+            ════════════════════════════════════════
           </div>
         </div>
       </header>
@@ -537,19 +544,27 @@ export default function DevLogPost() {
       {/* Post Content */}
       <main className="py-12 px-4">
         <div className="container mx-auto max-w-4xl">
-          {content || (
-            <p className="text-muted-foreground">Content coming soon...</p>
-          )}
+          <div className="prose prose-lg prose-invert max-w-none prose-headings:font-terminal prose-headings:text-primary prose-headings:uppercase prose-headings:tracking-wider prose-p:text-muted-foreground prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-code:text-primary prose-code:bg-card prose-code:px-1 prose-code:py-0.5 prose-code:border prose-code:border-border prose-li:text-muted-foreground prose-ol:text-muted-foreground prose-ul:text-muted-foreground">
+            {content || (
+              <div className="border border-border p-8 text-center">
+                <p className="text-primary font-terminal">[ CONTENT_PENDING ]</p>
+                <p className="text-muted-foreground text-sm mt-2">DATA_STREAM_INCOMING...</p>
+              </div>
+            )}
+          </div>
         </div>
       </main>
 
       {/* Footer navigation */}
-      <footer className="py-12 px-4 border-t border-border">
+      <footer className="py-12 px-4 border-t-2 border-primary/30">
         <div className="container mx-auto max-w-4xl text-center">
-          <Button variant="outline" asChild>
+          <div className="text-xs text-muted-foreground tracking-widest mb-6">
+            [ END_OF_LOG_ENTRY ]
+          </div>
+          <Button variant="outline" asChild className="text-xs tracking-wider">
             <Link to="/devlog">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to all posts
+              [ RETURN_TO_LOG_INDEX ]
             </Link>
           </Button>
         </div>

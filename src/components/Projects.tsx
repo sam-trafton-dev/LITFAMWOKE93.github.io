@@ -1,49 +1,49 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Mail } from "lucide-react"
+import { ExternalLink, Mail, Database } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
 
 const projects = [
   {
-    title: "Dynamic Imposter's Dome Lights",
-    subtitle: "Project Zomboid Mod",
+    id: "001",
+    title: "DYNAMIC_IMPOSTERS_DOME_LIGHTS",
+    subtitle: "PROJECT_ZOMBOID_MOD",
+    status: "DEPRECATED",
     description:
-      "Use Lua programming API to hijack Java engine lighting commands to give users the ability to read books inside their cars." +
-      " Mod is deprecated after the feature was implemented into the game. The fun challenge was using Lua tables to access and inspect unofficial API for Java objects to generate light on the map.",
-    tech: ["Java", "Lua"],
+      "LUA_API_HIJACK // JAVA_ENGINE_LIGHTING_COMMANDS // USER_ABILITY: READ_BOOKS_IN_VEHICLES // FEATURE_NOW_IN_CORE_GAME // CHALLENGE: LUA_TABLES + UNOFFICIAL_JAVA_API_INSPECTION",
+    tech: ["JAVA", "LUA"],
     image: "/img/didl_snap.png",
     link: "https://github.com/sam-trafton-dev/DIDL",
   },
   {
-    title: "Bankwave: Neon Networth",
-    subtitle: "itch.io/bankwave",
+    id: "002",
+    title: "BANKWAVE_NEON_NETWORTH",
+    subtitle: "ITCH.IO_RELEASE",
+    status: "ACTIVE",
     description:
-      "Interned with indie game studio to extend game jam edition into full-size game for Kickstarter campaign. My first experience with Go and concurrency patterns like Fan Out, Fan In, and Rate Limiting with Workers.",
-    tech: ["Go", "YarnSpinner", "Ebitengine"],
+      "INDIE_GAME_STUDIO_INTERNSHIP // GAME_JAM_TO_KICKSTARTER_EXPANSION // FIRST_GO_EXPERIENCE // PATTERNS: FAN_OUT.FAN_IN.RATE_LIMITING.WORKERS",
+    tech: ["GO", "YARNSPINNER", "EBITENGINE"],
     image: "/img/bankwave_logo.png",
     link: "https://frabjous-studios.itch.io/bankwave",
   },
   {
-    title: "Swipe Slam",
-    subtitle: "Android CRUD Application",
-    description: "Android CRUD application for adlib poetry prompts. Users can create, read, update, and delete prompts and add to each other's poems. No longer published.",
-    tech: ["Kotlin", "Firebase", "Google Cloud Functions"],
+    id: "003",
+    title: "SWIPE_SLAM",
+    subtitle: "ANDROID_CRUD_APP",
+    status: "ARCHIVED",
+    description:
+      "ADLIB_POETRY_PROMPTS // CRUD_OPERATIONS: CREATE.READ.UPDATE.DELETE // COLLABORATIVE_POEM_BUILDING // PUBLICATION_STATUS: UNPUBLISHED",
+    tech: ["KOTLIN", "FIREBASE", "GCP_FUNCTIONS"],
     image: "/img/swipeslam.png",
     link: null,
   },
   {
-    title: "Arc Raiders Steam Review Analysis",
-    subtitle: "Data Analytics and NLP",
-    description: "Using open source model from Ollama to perform semantic analysis. The goal is to identify the most critical development tasks for the game team to address.",
-    tech: ["Python", "Ollama", "NLP", "Data Analytics"],
+    id: "004",
+    title: "ARC_RAIDERS_STEAM_ANALYSIS",
+    subtitle: "DATA_ANALYTICS_NLP",
+    status: "ACTIVE",
+    description:
+      "OLLAMA_OPEN_SOURCE_MODEL // SEMANTIC_ANALYSIS // OBJECTIVE: IDENTIFY_CRITICAL_DEV_TASKS // OUTPUT: PRIORITIZED_TASK_RECOMMENDATIONS",
+    tech: ["PYTHON", "OLLAMA", "NLP", "DATA_ANALYTICS"],
     image: "/img/arc_raiders_logo.png",
     link: "https://github.com/sam-trafton-dev/nlp-steam-arc-raiders/tree/master",
   },
@@ -53,62 +53,118 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 px-4 bg-muted/50 scroll-mt-20"
+      className="py-20 px-4 bg-card/30 scroll-mt-20"
     >
       <div className="container mx-auto max-w-6xl">
         <div className="space-y-12">
+          {/* Header */}
           <div className="text-center space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold">Projects</h2>
-            <Separator className="w-24 mx-auto" />
-            <p className="text-bold-foreground max-w-2xl mx-auto">
-              Some people advise pruning projects as you grow, but learning is a journey with a littered trail of ugly code. I have put a star next to what I am currently most proud of.
+            <div className="text-xs text-muted-foreground tracking-widest">
+              ════════════════════════════════════════
+            </div>
+            <h2 className="text-4xl md:text-5xl font-terminal text-glow flex items-center justify-center gap-3">
+              <Database className="h-8 w-8" />
+              [ PROJECT_DATABASE ]
+            </h2>
+            <div className="text-xs text-muted-foreground tracking-widest">
+              ENTRIES: {projects.length} // TYPE: PUBLIC_REPOSITORY
+            </div>
+            <div className="text-xs text-muted-foreground tracking-widest">
+              ════════════════════════════════════════
+            </div>
+            <p className="text-sm text-muted-foreground max-w-2xl mx-auto pt-4 border border-border p-4 bg-background/50">
+              <span className="text-primary">&gt; </span>
+              NOTE: SOME_ADVISE_PRUNING_PROJECTS // LEARNING_IS_JOURNEY // 
+              CODE_TRAIL_SHOWS_GROWTH // STARRED_ITEMS = CURRENT_PRIDE
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-            {projects.map((project, index) => (
-              <Card
-                key={index}
-                className="overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.map((project) => (
+              <div
+                key={project.id}
+                className="border-2 border-border hover:border-primary/50 transition-all duration-300 bg-background group hover:border-glow"
               >
-                <div className="relative w-full h-48 overflow-hidden bg-muted">
+                {/* Entry Header */}
+                <div className="border-b border-border p-3 bg-card/50 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="text-primary font-terminal text-lg">
+                      ENTRY_{project.id}
+                    </span>
+                    <span className={`text-xs px-2 py-0.5 border ${
+                      project.status === 'ACTIVE' 
+                        ? 'border-green-500/50 text-green-500' 
+                        : project.status === 'DEPRECATED'
+                        ? 'border-red-500/50 text-red-500'
+                        : 'border-muted-foreground/50 text-muted-foreground'
+                    }`}>
+                      {project.status}
+                    </span>
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    [{project.tech.length}_TECHNOLOGIES]
+                  </div>
+                </div>
+
+                {/* Image */}
+                <div className="relative w-full h-40 overflow-hidden bg-card border-b border-border">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                 </div>
-                <CardHeader>
-                  <CardTitle className="text-xl">{project.title}</CardTitle>
-                  <CardDescription>{project.subtitle}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex-1">
-                  <p className="text-sm text-muted-foreground">
-                    {project.description}
-                  </p>
-                </CardContent>
-                <CardFooter className="flex flex-col items-start gap-3">
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech) => (
-                      <Badge key={tech} variant="outline">
-                        {tech}
-                      </Badge>
-                    ))}
+
+                {/* Content */}
+                <div className="p-4 space-y-4">
+                  <div>
+                    <div className="data-label mb-1">&gt; PROJECT_NAME</div>
+                    <h3 className="text-lg font-terminal text-primary group-hover:text-glow transition-all">
+                      {project.title}
+                    </h3>
                   </div>
+
+                  <div>
+                    <div className="data-label mb-1">&gt; CLASSIFICATION</div>
+                    <p className="text-sm text-muted-foreground">{project.subtitle}</p>
+                  </div>
+
+                  <div>
+                    <div className="data-label mb-1">&gt; DESCRIPTION</div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="data-label mb-2">&gt; TECH_STACK</div>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech) => (
+                        <Badge key={tech} variant="outline" className="text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer */}
+                <div className="border-t border-border p-3 bg-card/30">
                   {project.link ? (
                     <Button
                       variant="outline"
                       size="sm"
                       asChild
-                      className="w-full sm:w-auto"
+                      className="w-full text-xs tracking-wider"
                     >
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        View Project
-                        <ExternalLink className="ml-2 h-4 w-4" />
+                        [ ACCESS_REPOSITORY ]
+                        <ExternalLink className="ml-2 h-3 w-3" />
                       </a>
                     </Button>
                   ) : (
@@ -116,19 +172,25 @@ export function Projects() {
                       variant="outline"
                       size="sm"
                       asChild
-                      className="w-full sm:w-auto"
+                      className="w-full text-xs tracking-wider"
                     >
                       <a
                         href="mailto:admin@samtrafton.dev?subject=Request to Review Project Code"
                       >
-                        Available on Request
-                        <Mail className="ml-2 h-4 w-4" />
+                        [ REQUEST_ACCESS ]
+                        <Mail className="ml-2 h-3 w-3" />
                       </a>
                     </Button>
                   )}
-                </CardFooter>
-              </Card>
+                </div>
+              </div>
             ))}
+          </div>
+
+          {/* Footer */}
+          <div className="text-center text-xs text-muted-foreground tracking-widest">
+            ════════════════════════════════════════<br/>
+            [ END_OF_DATABASE_QUERY ]
           </div>
         </div>
       </div>
