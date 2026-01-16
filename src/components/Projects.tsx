@@ -117,7 +117,7 @@ export function Projects() {
               ════════════════════════════════════════
             </div>
             <h2 className="text-4xl md:text-5xl font-terminal text-glow flex items-center justify-center gap-3">
-              <Database className="h-8 w-8" />
+              <Database className="h-8 w-6" />
               [ PROJECT_DATABASE ]
             </h2>
             <div className="text-xs text-muted-foreground tracking-widest">
