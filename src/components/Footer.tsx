@@ -24,7 +24,7 @@ export function Footer() {
           {/* Left: WY Branding */}
           <div className="flex items-center gap-4">
             <div className="border border-primary/30 px-3 py-1">
-              <span className="text-primary font-terminal">WEYLAND-YUTANI</span>
+              <span className="text-primary font-terminal">CORALLIS</span>
               <span className="text-muted-foreground ml-2">CORP</span>
             </div>
             <div className="text-muted-foreground hidden sm:block">
